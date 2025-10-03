@@ -1,0 +1,37 @@
+body {
+  padding-bottom: 3rem;
+}
+
+header h1 a {
+  text-decoration: none;
+}
+
+.subtitle {
+  color: var(--muted-color);
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+article {
+  margin-bottom: 1.5rem;
+}
+
+article header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+article footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button.secondary {
+  background-color: transparent;
+  border: 1px solid var(--muted-border-color);
+}
