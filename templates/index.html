@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Beiträge - Flask HTMX Blog{% endblock %}
+
+{% block content %}
+<section>
+  <h2>Neuen Beitrag erstellen</h2>
+  <form method="post" class="grid">
+    <label>
+      Titel
+      <input type="text" name="title" required />
+    </label>
+    <label>
+      Inhalt
+      <textarea name="body" rows="4" required></textarea>
+    </label>
+    <button type="submit">Veröffentlichen</button>
+  </form>
+</section>
+
+<section>
+  <h2>Beiträge</h2>
+  {% if posts %}
+    <ul>
+      {% for post in posts %}
+        <li>
+          <article>
+            <header>
+              <h3><a href="{{ url_for('post_detail', post_id=post['id']) }}" hx-boost="true">{{ post['title'] }}</a></h3>
+              <small>{{ post['created_at'] }}</small>
+            </header>
+            <p>{{ post['body'] }}</p>
+            <footer>
+              <small>{{ post['comment_count'] }} Kommentare</small>
+              <a class="secondary" href="{{ url_for('post_detail', post_id=post['id']) }}" hx-boost="true">Kommentare ansehen</a>
+            </footer>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Noch keine Beiträge vorhanden.</p>
+  {% endif %}
+</section>
+{% endblock %}
