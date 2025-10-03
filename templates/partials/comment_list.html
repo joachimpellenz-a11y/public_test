@@ -1,0 +1,29 @@
+<div id="comments">
+  {% if comments %}
+    <ul>
+      {% for comment in comments %}
+        <li>
+          <article>
+            <header>
+              <strong>{{ comment['author'] }}</strong>
+              <small>{{ comment['created_at'] }}</small>
+            </header>
+            <p>{{ comment['content'] }}</p>
+            <footer>
+              <button
+                class="secondary"
+                hx-delete="{{ url_for('delete_comment', comment_id=comment['id']) }}"
+                hx-target="#comments"
+                hx-swap="outerHTML"
+              >
+                Löschen
+              </button>
+            </footer>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Noch keine Kommentare vorhanden.</p>
+  {% endif %}
+</div>
