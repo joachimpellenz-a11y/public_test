@@ -54,9 +54,12 @@ def init_db() -> None:
             )
 
 
-@app.before_first_request
-def before_first_request() -> None:
-    init_db()
+
+# Ensure the database schema exists when the module is imported. This mirrors
+# the previous before_first_request hook but remains compatible with newer
+# Flask versions where the hook has been removed.
+init_db()
+
 
 
 @app.route("/", methods=["GET", "POST"])
